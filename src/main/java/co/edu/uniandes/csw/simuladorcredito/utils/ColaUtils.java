@@ -25,7 +25,7 @@ public class ColaUtils {
     public static void addMensaje(String mensaje){
         try {
             String uri = System.getenv("CLOUDAMQP_URL");
-            if (uri == null) uri = "amqp://guest:guest@localhost";
+            if (uri == null) uri = "amqp://yzjaoeou:y7GG2F7D95cJ9on-1Ozswe-NCRhLO8g3@turtle.rmq.cloudamqp.com/yzjaoeou";
             
             ConnectionFactory factory = new ConnectionFactory();
             factory.setUri(uri);
