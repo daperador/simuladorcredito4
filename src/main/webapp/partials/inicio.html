@@ -1,0 +1,142 @@
+<div>
+    <div class="panel-info">
+        <nav role="navigation" class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">Simulador de Crédito</a>
+                </div>
+                <div id="bs-example-navbar-collapse-3" class="collapse navbar-collapse">
+                    <button class="btn btn-default navbar-btn" type="button" ng-click="registrarse()">Registrarse</button>
+                    <button class="btn btn-default navbar-btn" type="button" ng-click="loguearse()">Ingresar</button>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-md-6">
+                <h1>SimuladoresDeCredito.com</h1>
+            </div>
+            <div class="col-md-6">
+                <img src="img/simulador.jpg"/>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Simuladores de Crédito</div>
+            <div class="panel-body">
+                Es una empresa que le permite a sus clientes realizar simulaciones de créditos de acuerdo a las líneas de crédito que su empresa ofrezca 
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bs-example-modal-md in" id="dlgRegistro" tabindex="-1" role="dialog" aria-labelledby="dlgRegistro" aria-hidden="false">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="dlgConsulta">Registrarse</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form name="formulario" role="form">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Nombres: </label>
+                                <input id="nombres" 
+                                       class="form-control required" 
+                                       required="true"
+                                       ng-required="true"
+                                       type="text" 
+                                       ng-model="datosFormulario.nombres"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Apellidos: </label>
+                                <input id="nombres" 
+                                       class="form-control required" 
+                                       required="true"
+                                       ng-required="true"
+                                       type="text" 
+                                       ng-model="datosFormulario.apellidos"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Email: </label>
+                                <input id="email" 
+                                       class="form-control required" 
+                                       required="true"
+                                       ng-required="true"
+                                       type="email" 
+                                       ng-model="datosFormulario.email"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Contraseña: </label>
+                                <input id="password" 
+                                       class="form-control required" 
+                                       required="true"
+                                       ng-required="true"
+                                       type="password" 
+                                       ng-model="datosFormulario.password"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Confirmación Contraseña: </label>
+                                <input id="confirmacion" 
+                                       class="form-control required" 
+                                       required="true"
+                                       ng-required="true"
+                                       type="password" 
+                                       ng-model="confirmacion"/>
+                            </div>
+                        </div>
+                    </form>
+                    <hr />
+                    <div class="text-right">
+                        <button class="btn btn-primary btn-sm" ng-click="aceptarRegistro()">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-md in" id="dlgLogin" tabindex="-1" role="dialog" aria-labelledby="dlgLogin" aria-hidden="false">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="dlgConsulta">Login</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form name="formulario" role="form">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Email: </label>
+                                <input id="emailLogin" 
+                                       class="form-control required" 
+                                       required="true"
+                                       ng-required="true"
+                                       type="text" 
+                                       ng-model="datosFormulario.email"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Contraseña: </label>
+                                <input id="passwordLogin" 
+                                       class="form-control required" 
+                                       required="true"
+                                       ng-required="true"
+                                       type="password" 
+                                       ng-model="datosFormulario.password"/>
+                            </div>
+                        </div>
+                    </form>
+                    <hr />
+                    <div class="text-right">
+                        <button class="btn btn-primary btn-sm" ng-click="aceptarLogin()">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
