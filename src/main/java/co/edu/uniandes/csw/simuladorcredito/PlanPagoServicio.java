@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.simuladorcredito.dao.LineaDAO;
 import co.edu.uniandes.csw.simuladorcredito.dao.PlanPagoDAO;
 import co.edu.uniandes.csw.simuladorcredito.persistencia.entity.Linea;
 import co.edu.uniandes.csw.simuladorcredito.persistencia.entity.PlanPago;
+import co.edu.uniandes.csw.simuladorcredito.utils.ColaUtils;
 import co.edu.uniandes.csw.simuladorcredito.utils.RegistroException;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +38,8 @@ public class PlanPagoServicio {
         try {
             planPago.setEstado("En proceso");
             PlanPago plan=(PlanPago)new PlanPagoDAO().insertar(planPago);
+            //insertar en la cola
+            ColaUtils.addMensaje(""+plan.getId());
             return plan;
         } catch (Exception ex) {
             Logger.getLogger(PlanPagoServicio.class.getName()).log(Level.SEVERE, null, ex);
