@@ -30,7 +30,7 @@ public class SuperDAO <T extends SuperPojo> {
     private static MongoURI mongoClient ;
     protected static DB db ;
     static{
-        /*try {
+        try {
             //ResourceBundle rb=ResourceBundle.getBundle("config");
             mongoClient = new MongoURI(System.getenv("MONGOHQ_URL"));
             db = mongoClient.connectDB();
@@ -39,15 +39,15 @@ public class SuperDAO <T extends SuperPojo> {
             Logger.getLogger(SuperDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnknownHostException ex) {
             Logger.getLogger(SuperDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
         
         
-        try{
+        /*try{
             MongoClient mongoClient2 = new MongoClient();
             db=mongoClient2.getDB("mydb");
         } catch (UnknownHostException ex) {
             Logger.getLogger(SuperDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
     }
     protected DBCollection col;
