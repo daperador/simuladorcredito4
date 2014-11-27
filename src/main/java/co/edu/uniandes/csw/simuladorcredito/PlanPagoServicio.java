@@ -73,18 +73,18 @@ public class PlanPagoServicio {
         ScanResult sr=new PlanPagoDAO().leer("PlanPago", cuantos, pps);
         LoginServicio.sesion2.put(sessionId, sr.getLastEvaluatedKey());
         return sr;
-    }
+    }*/
     
     @Path("/planPago/{id}")
     @GET
     public PlanPago getPlan(@PathParam("id") Long id){
-        return new PlanPagoDAO().leer(PlanPago.class, id);
+        return new PlanPagoDAO().leer(id);
     }  
     
-    /*@Path("/cuotas/{id}")
+    @Path("/cuotas/{id}")
     @GET
     public PlanPago getCuotas(@PathParam("id") Long id){
-        return new PlanPagoDAO().leer(PlanPago.class, id);
-    } */ 
+        return new PlanPagoDAO().leer(id);
+    } 
     
 }

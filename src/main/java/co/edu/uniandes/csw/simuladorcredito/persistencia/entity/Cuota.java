@@ -9,7 +9,7 @@ package co.edu.uniandes.csw.simuladorcredito.persistencia.entity;
  *
  * @author Fredy
  */
-public class Cuota extends SuperPojo{
+public class Cuota extends SuperPojo implements Comparable{
     private Long id;
     private Integer numeroCuota;
     private Double intereses;
@@ -73,6 +73,14 @@ public class Cuota extends SuperPojo{
     public void setIdPlan(Long idPlan) {
         this.idPlan = idPlan;
     }
+
+    @Override
+    public int compareTo(Object o) {
+        Cuota c = (Cuota)o;
+        return this.id.compareTo(c.getId());
+    }
+    
+    
     
     
 }

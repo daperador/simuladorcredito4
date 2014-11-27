@@ -12,6 +12,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 import com.mongodb.MongoURI;
 import java.net.UnknownHostException;
@@ -29,7 +30,7 @@ public class SuperDAO <T extends SuperPojo> {
     private static MongoURI mongoClient ;
     protected static DB db ;
     static{
-        try {
+        /*try {
             //ResourceBundle rb=ResourceBundle.getBundle("config");
             mongoClient = new MongoURI(System.getenv("MONGOHQ_URL"));
             db = mongoClient.connectDB();
@@ -38,7 +39,16 @@ public class SuperDAO <T extends SuperPojo> {
             Logger.getLogger(SuperDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnknownHostException ex) {
             Logger.getLogger(SuperDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
+        
+        try{
+            MongoClient mongoClient2 = new MongoClient();
+            db=mongoClient2.getDB("mydb");
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(SuperDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     protected DBCollection col;
     
@@ -69,5 +79,19 @@ public class SuperDAO <T extends SuperPojo> {
         }   
         return lista;
     }
+    
+    protected List<DBObject> leerPagina(int desde, int cuantos){
+        List<DBObject> lista = new ArrayList();
+        DBCursor cursor = col.find(new BasicDBObject(), new BasicDBObject()).skip(desde).batchSize(cuantos);
+        try {
+           while(cursor.hasNext()) {
+               lista.add(cursor.next());
+           }
+        } finally {
+           cursor.close();
+        }   
+        return lista;
+    }
+    
     
 }

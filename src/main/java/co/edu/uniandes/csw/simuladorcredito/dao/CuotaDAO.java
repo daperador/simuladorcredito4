@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.simuladorcredito.persistencia.entity.Cuota;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,6 +35,7 @@ public class CuotaDAO extends SuperDAO<Cuota>{
             a.setIdPlan((Long)doc.get("idPlan"));
             cuotas.add(a);
         }
+        Collections.sort(cuotas);
         return cuotas;
     }
 
