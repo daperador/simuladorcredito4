@@ -10,6 +10,8 @@ module.controller('menuCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.plan;
     $scope.administrador=1;
     $scope.ultimoKey=null;
+    $scope.tamano = 50;
+    $scope.desde = 0;
     
     $http.get('webresources/login/administrador/', {})
         .success(function (data, status, headers, config) {
@@ -82,7 +84,12 @@ module.controller('menuCtrl', ['$scope', '$http', function($scope, $http) {
     };
     
     $scope.cargarPlanes=function(primero){
-        $http.get('webresources/planPago/planesPago/'+50+'/'+primero, {})
+        if (primero){
+            $scope.desde=0;
+        }else{
+            $scope.desde=$scope.desde+$scope.tamano;
+        }
+        $http.get('webresources/planPago/planesPago/'+$scope.desde+'/'+$scope.tamano, {})
         .success(function (data, status, headers, config) {
             $scope.planes=data;
         }).error(function (data, status, headers, config) {

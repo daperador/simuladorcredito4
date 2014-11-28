@@ -80,9 +80,9 @@ public class SuperDAO <T extends SuperPojo> {
         return lista;
     }
     
-    protected List<DBObject> leerPagina(int desde, int cuantos){
+    protected List<DBObject> leerPaginaGenerico(int desde, int cuantos){
         List<DBObject> lista = new ArrayList();
-        DBCursor cursor = col.find(new BasicDBObject(), new BasicDBObject()).skip(desde).batchSize(cuantos);
+        DBCursor cursor = col.find(new BasicDBObject(), new BasicDBObject()).skip(desde).limit(cuantos);
         try {
            while(cursor.hasNext()) {
                lista.add(cursor.next());

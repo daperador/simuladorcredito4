@@ -10,7 +10,9 @@ import co.edu.uniandes.csw.simuladorcredito.persistencia.entity.Linea;
 import co.edu.uniandes.csw.simuladorcredito.persistencia.entity.PlanPago;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -67,6 +69,36 @@ public class PlanPagoDAO extends SuperDAO<PlanPago>{
         new CuotaDAO().insertar(s.getCuotas());
         
         return s;
+    }
+    
+    public List<PlanPago> leerPagina(int desde, int cuantos){
+        List<DBObject> datos=super.leerPaginaGenerico(desde, cuantos);
+        List<PlanPago> rta=new ArrayList<PlanPago>();
+        for (DBObject o:datos){
+            PlanPago p=new PlanPago();
+
+            p.setDocumento((String)o.get("documento"));
+            p.setEstado((String)o.get("estado"));
+            p.setFechaCreacion((Date)o.get("fechaCreacion"));
+            p.setFechaModificacion((Date)o.get("fechaModificacion"));
+            p.setFechaNacimiento((Date)o.get("fechaNacimiento"));
+            p.setId((Long)o.get("id"));
+            
+            p.setLinea(new Linea());
+            DBObject l=(DBObject)o.get("linea");
+            p.getLinea().setId((Long)l.get("id"));
+            p.getLinea().setNombre((String)l.get("nombre"));
+            p.getLinea().setTasa((Double)l.get("tasa"));
+
+            p.setNivelRiesgo((Double)o.get("nivelRiesgo"));
+            p.setPlazo((Integer)o.get("plazo"));
+            p.setValor((Integer)o.get("valor"));
+            
+            //p.setCuotas(new CuotaDAO().leer(p.getId()));
+            
+            rta.add(p);
+        }
+        return rta;
     }
     
 }

@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.simuladorcredito.persistencia.entity.PlanPago;
 import co.edu.uniandes.csw.simuladorcredito.utils.ColaUtils;
 import co.edu.uniandes.csw.simuladorcredito.utils.RegistroException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,29 +52,13 @@ public class PlanPagoServicio {
     @GET
     public PaginatedScanList getPlanesPago(){
         return new PlanPagoDAO().leer(PlanPago.class);
-    }
-    
-    @Path("/planesPago/{cuantos}/{primero}")
-    @GET
-    public ScanResult getPlanesPago(@PathParam("cuantos") Integer cuantos, @PathParam("primero") boolean primero){
-        String sessionId=null;
-        for (Cookie c:request.getCookies()){
-            if (c.getName().equals("sessionId")){
-                sessionId = c.getValue();
-                break;
-            }
-        }
-        if (primero){
-            LoginServicio.sesion2.remove(sessionId);
-        }
-        HashMap<String, AttributeValue> pps=null;
-        if (LoginServicio.sesion2.get(sessionId)!=null){
-            pps=(HashMap<String, AttributeValue>)LoginServicio.sesion2.get(sessionId);
-        }
-        ScanResult sr=new PlanPagoDAO().leer("PlanPago", cuantos, pps);
-        LoginServicio.sesion2.put(sessionId, sr.getLastEvaluatedKey());
-        return sr;
     }*/
+    
+    @Path("/planesPago/{desde}/{cuantos}")
+    @GET
+    public List<PlanPago> getPlanesPago(@PathParam("desde") Integer desde, @PathParam("cuantos") Integer cuantos){
+        return new PlanPagoDAO().leerPagina(desde, cuantos);
+    }
     
     @Path("/planPago/{id}")
     @GET
